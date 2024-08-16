@@ -210,22 +210,59 @@ class App(customtkinter.CTk):
     
     def updatlol(self):
         pass
+    def sidebutton(self, yeargroup):
+        global beaviour_vals
+        global behaviour_realname
+        global aqib
+        global aamir
+        # Delete widgets
+        for widget in self.tabview.tab("Behaviour Report").winfo_children():
+            widget.destroy()
+        for widget in self.tabview.tab("Spend XP").winfo_children():
+            widget.destroy()
+        for widget in self.tabview.tab("Award XP").winfo_children():
+            widget.destroy()
+        
 
-    def year13sidebutton(self):
-        print("Year 13 button pressed")
+        # Assign names
+        with open('behaviour.csv', newline='') as f:
+            reader = csv.reader(f)
+            data = list(reader)
+        if yeargroup == 13:
+            beaviour_vals = data[0]
+            behaviour_realname = data[1]
+        if yeargroup == 12:
+            beaviour_vals = data[2]
+            behaviour_realname = data[3]
+        if yeargroup == 11:
+            beaviour_vals = data[4]
+            behaviour_realname = data[5]
+        if yeargroup == 10:
+            beaviour_vals = data[6]
+            behaviour_realname = data[7]
+        if yeargroup == 9:
+            beaviour_vals = data[8]
+            behaviour_realname = data[9]
 
-    def year12sidebutton(self):
-        print("Year 12 button pressed")
+        with open('xp.csv', newline='') as f:
+            reader = csv.reader(f)
+            data = list(reader)
+        if yeargroup == 13:
+            xp_vals = data[0]
+            xp_realname = data[1]
+        if yeargroup == 12:
+            xp_vals = data[2]
+            xp_realname = data[3]
+        if yeargroup == 11:
+            xp_vals = data[4]
+            xp_realname = data[5]
+        if yeargroup == 10:
+            xp_vals = data[6]
+            xp_realname = data[7]
+        if yeargroup == 9:
+            xp_vals = data[8]
+            xp_realname = data[9]
 
-    def year11sidebutton(self):
-        print("Year 11 button pressed")
+        aqib = "<REDACTED>"
 
-    def year10sidebutton(self):
-        print("Year 10 button pressed")
-
-    def year9sidebutton(self):
-        print("Year 9 button pressed")
-
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
+        aamir = "<REDACTED>"
