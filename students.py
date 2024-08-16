@@ -78,8 +78,7 @@ class App(customtkinter.CTk):
     
     def updatlol(self):
         pass
-
-can you explain what this code does def sidebutton(self, yeargroup):
+    def sidebutton(self, yeargroup):
         global beaviour_vals
         global behaviour_realname
         global aqib
