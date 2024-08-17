@@ -299,4 +299,31 @@ class App(customtkinter.CTk):
             except Exception as e:
                 print(e)
 
+    # Behaviour Stuff
+        self.bigtitle = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="Behaviour Report", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.bigtitle.grid(row=0, column=0, padx=20, pady=(20, 10))
+        
+        self.label_tab_1_behav = customtkinter.CTkOptionMenu(self.tabview.tab("Behaviour Report"), values=beaviour_vals, width=500, height=40)
+        self.label_tab_1_behav.grid(row=1, column=0, padx=20, pady=20)
+
+        self.reason = customtkinter.CTkEntry(self.tabview.tab("Behaviour Report"), placeholder_text="Reason", width=500, height=40)
+        self.reason.grid(row=3, column=0, padx=20, pady=20)
+
+        self.multiradiobox = customtkinter.CTkOptionMenu(self.tabview.tab("Behaviour Report"), values=["Homework", "Late", "Behaviour"], width=500, height=40)
+        self.multiradiobox.grid(row=2, column=0, padx=20, pady=20)
+
+        self.issuedby = customtkinter.CTkEntry(self.tabview.tab("Behaviour Report"), placeholder_text="Issued By", width=500, height=40)
+        self.issuedby.grid(row=4, column=0, padx=20, pady=20)
+        
+        self.detentionlabel = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="", width=500, height=40, font=customtkinter.CTkFont(size=20))
+        self.detentionlabel.grid(row=5, column=0, padx=20, pady=20)
+
+
+        self.amount_of_detentions = customtkinter.CTkButton(self.tabview.tab("Behaviour Report"), text="Amount of detentions", command=self.detention_number, width=500, height=40)
+        self.amount_of_detentions.grid(row=6, column=0, padx=20, pady=20)
+
+        self.submit = customtkinter.CTkButton(self.tabview.tab("Behaviour Report"), text="Submit", command=self.submit_behaviour, width=500, height=40)
+        self.submit.grid(row=7, column=0, padx=20, pady=20)
+
+
                 
