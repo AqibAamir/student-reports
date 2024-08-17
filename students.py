@@ -43,9 +43,20 @@ class App(customtkinter.CTk):
         self.sidebar_button_5 = customtkinter.CTkButton(self.sidebar_frame, command=self.year7sidebutton, text="Year 9")
         self.sidebar_button_5.grid(row=5, column=0, padx=20, pady=10)
 
+        #self.appearance_mode_optionemenu = customtkinter.CTkOptionMenu(self.sidebar_frame, values=["Dark", "Light"],
+        #                                                               command=self.change_appearance_mode_event)
+        #self.appearance_mode_optionemenu.grid(row=6, column=0, padx=20, pady=(10, 10))
+
+        # self.updatebutton = customtkinter.CTkButton(self.sidebar_frame, command=self.updatlol, text="Update")
+        # self.updatebutton.grid(row=7, column=0, padx=20, pady=(10, 10))
+
         new_scaling = "120%"
         new_scaling_float = int(new_scaling.replace("%", "")) / 100
         customtkinter.set_widget_scaling(new_scaling_float)
+
+
+        #def second(self):
+        
 
         # create tabview
         self.tabview = customtkinter.CTkTabview(self, width=900, height=600)
@@ -78,11 +89,12 @@ class App(customtkinter.CTk):
     
     def updatlol(self):
         pass
+
     def sidebutton(self, yeargroup):
         global beaviour_vals
         global behaviour_realname
-        global aqib
-        global aamir
+        global sahil
+        global farhana
         # Delete widgets
         for widget in self.tabview.tab("Behaviour Report").winfo_children():
             widget.destroy()
@@ -96,46 +108,48 @@ class App(customtkinter.CTk):
         with open('behaviour.csv', newline='') as f:
             reader = csv.reader(f)
             data = list(reader)
-        if yeargroup == 13:
+        if yeargroup == 11:
             beaviour_vals = data[0]
             behaviour_realname = data[1]
-        if yeargroup == 12:
+        if yeargroup == 10:
             beaviour_vals = data[2]
             behaviour_realname = data[3]
-        if yeargroup == 11:
+        if yeargroup == 9:
             beaviour_vals = data[4]
             behaviour_realname = data[5]
-        if yeargroup == 10:
+        if yeargroup == 8:
             beaviour_vals = data[6]
             behaviour_realname = data[7]
-        if yeargroup == 9:
+        if yeargroup == 7:
             beaviour_vals = data[8]
             behaviour_realname = data[9]
 
         with open('xp.csv', newline='') as f:
             reader = csv.reader(f)
             data = list(reader)
-        if yeargroup == 13:
+        if yeargroup == 11:
             xp_vals = data[0]
             xp_realname = data[1]
-        if yeargroup == 12:
+        if yeargroup == 10:
             xp_vals = data[2]
             xp_realname = data[3]
-        if yeargroup == 11:
+        if yeargroup == 9:
             xp_vals = data[4]
             xp_realname = data[5]
-        if yeargroup == 10:
+        if yeargroup == 8:
             xp_vals = data[6]
             xp_realname = data[7]
-        if yeargroup == 9:
+        if yeargroup == 7:
             xp_vals = data[8]
             xp_realname = data[9]
 
-        aqib = "<REDACTED>"
+        sahil = "<REDACTED>"
 
-        aamir = "<REDACTED>"
+        farhana = "<REDACTED>"
 
-# Functions
+
+
+        # Functions
         def submit_behaviour():
             print("Submitted")
 
@@ -147,20 +161,20 @@ class App(customtkinter.CTk):
             xp_sheet = file.open("House Points Tracker Yearly")
             xp_sheet = xp_sheet.worksheet("XP")
 
-        indexnumber = xp_vals.index(self.label_tab_11.get())
-        inputname = xp_realname[indexnumber]
-        findname = xp_sheet.find(inputname)
-        print(inputname)
-        print(findname)
-        row = findname.row
-        col = findname.col
-        studentcell = xp_sheet.cell(row, col+2)
-        spndingpoints = xp_sheet.cell(row, col+4)
-        transaction = xp_sheet.cell(row, col+6)
-        self.xp_label1.configure(text=f"{self.label_tab_11.get()} has {studentcell.value} total points and {spndingpoints.value} spending points.")
-        if transaction.value == None:
-                    self.xp_transaction1.configure(text="No recent awards.")
-                    self.xp_transaction1.configure(text=transaction.value)
+            indexnumber = xp_vals.index(self.label_tab_11.get())
+            inputname = xp_realname[indexnumber]
+            findname = xp_sheet.find(inputname)
+            print(inputname)
+            print(findname)
+            row = findname.row
+            col = findname.col
+            studentcell = xp_sheet.cell(row, col+2)
+            spndingpoints = xp_sheet.cell(row, col+4)
+            transaction = xp_sheet.cell(row, col+6)
+            self.xp_label1.configure(text=f"{self.label_tab_11.get()} has {studentcell.value} total points and {spndingpoints.value} spending points.")
+            if transaction.value == None:
+                self.xp_transaction1.configure(text="No recent awards.")
+            self.xp_transaction1.configure(text=transaction.value)
 
 
 
@@ -246,7 +260,7 @@ class App(customtkinter.CTk):
             except Exception as e:
                 print(e)
 
-    def submit_points_award():
+        def submit_points_award():
             try:
                 scopes = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
                 credentials = ServiceAccountCredentials.from_json_keyfile_name("auth_key.json", scopes)
@@ -299,7 +313,8 @@ class App(customtkinter.CTk):
             except Exception as e:
                 print(e)
 
-    # Behaviour Stuff
+
+        # Behaviour Stuff
         self.bigtitle = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="Behaviour Report", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
         self.bigtitle.grid(row=0, column=0, padx=20, pady=(20, 10))
         
@@ -325,7 +340,6 @@ class App(customtkinter.CTk):
         self.submit = customtkinter.CTkButton(self.tabview.tab("Behaviour Report"), text="Submit", command=self.submit_behaviour, width=500, height=40)
         self.submit.grid(row=7, column=0, padx=20, pady=20)
 
-        
          # XP Stuff
         self.bigtitle = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="Spend XP", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
         self.bigtitle.grid(row=0, column=0, padx=20, pady=(20, 10))
@@ -361,7 +375,7 @@ class App(customtkinter.CTk):
 
         self.bigtitle1 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Award XP", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
         self.bigtitle1.grid(row=0, column=0, padx=20, pady=(20, 10))
-
+        
         self.label_tab_11 = customtkinter.CTkOptionMenu(self.tabview.tab("Award XP"), values=xp_vals, width=500, height=40)
         self.label_tab_11.grid(row=1, column=0, padx=20, pady=20)
 
@@ -449,8 +463,8 @@ class App(customtkinter.CTk):
             print("Number4")
             parentemail = [studentcell1.value, studentcell2.value, studentcell3.value, sahil, farhana]
             return parentemail
-
-            def detention_number(self):
+        
+        def detention_number(self):
             scopes = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
 
         credentials = ServiceAccountCredentials.from_json_keyfile_name("auth_key.json", scopes)
@@ -494,7 +508,6 @@ class App(customtkinter.CTk):
         self.successnote2.grid(row=1, column=0, padx=20, pady=(20, 10))
         self.successnote3 = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="Choose another year group on the sidebar", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
         self.successnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
-
 
     def xp_success(self):
         for widget in self.tabview.tab("Spend XP").winfo_children():
@@ -647,7 +660,6 @@ class App(customtkinter.CTk):
 if __name__ == "__main__":
     app = App()
     app.mainloop()
-
 
 
 
