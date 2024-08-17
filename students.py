@@ -325,5 +325,42 @@ class App(customtkinter.CTk):
         self.submit = customtkinter.CTkButton(self.tabview.tab("Behaviour Report"), text="Submit", command=self.submit_behaviour, width=500, height=40)
         self.submit.grid(row=7, column=0, padx=20, pady=20)
 
+        
+         # XP Stuff
+        self.bigtitle = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="Spend XP", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.bigtitle.grid(row=0, column=0, padx=20, pady=(20, 10))
+        
+        self.label_tab_1 = customtkinter.CTkOptionMenu(self.tabview.tab("Spend XP"), values=xp_vals, width=500, height=40)
+        self.label_tab_1.grid(row=1, column=0, padx=20, pady=20)
+
+        xplists = ["<REDACTED>"]
+
+        self.pricetab = customtkinter.CTkOptionMenu(self.tabview.tab("Spend XP"), values=xplists, width=200, height=40)
+        self.pricetab.grid(row=1, column=1, padx=20, pady=20)
+
+
+        self.reason_xp = customtkinter.CTkEntry(self.tabview.tab("Spend XP"), placeholder_text="Amount of Points", width=500, height=40)
+        self.reason_xp.grid(row=2, column=0, padx=20, pady=20)
+
+        self.xp_label = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="", width=500, height=40, font=customtkinter.CTkFont(size=20))
+        self.xp_label.grid(row=3, column=0, padx=20, pady=20)
+
+        self.xp_tran = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="Transactions:", width=150, height=40, font=customtkinter.CTkFont(size=23))
+        self.xp_tran.grid(row=2, column=1, padx=20, pady=20)
+        
+        self.xp_transaction = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="", width=150, height=40, font=customtkinter.CTkFont(size=16))
+        self.xp_transaction.grid(row=3, column=1, padx=20, pady=20)     
+
+        self.issuedby_xp = customtkinter.CTkButton(self.tabview.tab("Spend XP"), text="Check Points / Transactions", command=check_points, width=500, height=40)
+        self.issuedby_xp.grid(row=4, column=0, padx=10, pady=10)
+
+        self.submit = customtkinter.CTkButton(self.tabview.tab("Spend XP"), text="Spend Points", command=submit_points, width=500, height=40)
+        self.submit.grid(row=5, column=0, padx=10, pady=10)
+
+
+
+        self.bigtitle1 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Award XP", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.bigtitle1.grid(row=0, column=0, padx=20, pady=(20, 10))
+
 
                 
