@@ -572,6 +572,82 @@ class App(customtkinter.CTk):
         receivers = parentemail
         foasfesofelsp = "tele"
 
+        try:
+            server = smtplib.SMTP('smtp.gmail.com:587')
+            server.ehlo()
+            server.starttls()
+            server.login(sender, password) #  Exception here
+            server.sendmail(sender, receivers, message)
+            print("Connecting to Gmail Server...")
+        except:
+            print("Failed to send message")
+            # self.failure()
+        finally:
+            server.quit()
+            print("Message sent successfully")
+            try:
+                message = f'<REDACTED>'
+                fashgiopahse = f"<REDACTED>"
+                print(requests.get(fashgiopahse).json())
+            except:
+                print("failed")
+            print(inputnames)
+            print(findname)
+            row = findname.row
+            col = findname.col
+            hw = col + 8
+            late = col + 9
+            behav = col + 10
+            # if the radiobutton is homework then add 1 to the homework column
+            if self.multiradiobox.get() == "Homework":
+                current_homework = behav_sheet.cell(row, hw).value
+                points = 1
+                newpoints = int(current_homework) + int(points)
+                behav_sheet.update_cell(row, hw, newpoints)
+                if int(newpoints) == 5:
+                    self.semails(inputnames, "Homework", "fifth")
+            # if the radiobutton is late then add 1 to the late column
+            elif self.multiradiobox.get() == "Late":
+                current_late = behav_sheet.cell(row, late).value
+                points = 1
+                newpoints = int(current_late) + int(points)
+                behav_sheet.update_cell(row, late, newpoints)
+                if int(newpoints) == 5:
+                    self.semails(inputnames, "Late", "fifth")
+            # if the radiobutton is behaviour then add 1 to the behaviour column
+            elif self.multiradiobox.get() == "Behaviour":
+                current_behaviour = behav_sheet.cell(row, behav).value
+                points = 1
+                newpoints = int(current_behaviour) + int(points)
+                behav_sheet.update_cell(row, behav, newpoints)
+                if int(newpoints) == 3:
+                    self.semails(inputnames,"Behaviour", "third")
+
+    def semails(self, inputnames, whichone, noooo):
+        message = f'''<REDACTED>'''
+        sender = "<REDACTED>"
+        password = "<REDACTED>"
+        receivers = ["<REDACTED>"]
+        
+        try:
+            server = smtplib.SMTP('smtp.gmail.com:587')
+            server.ehlo()
+            server.starttls()
+            server.login(sender, password) #  Exception here
+            server.sendmail(sender, receivers, message)
+            print("Connecting to Gmail Server...")
+        except:
+            pass
+        finally:
+            server.quit()
+
+    
+    
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
+
 
 
 
