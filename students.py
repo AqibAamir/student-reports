@@ -362,5 +362,55 @@ class App(customtkinter.CTk):
         self.bigtitle1 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Award XP", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
         self.bigtitle1.grid(row=0, column=0, padx=20, pady=(20, 10))
 
+        self.label_tab_11 = customtkinter.CTkOptionMenu(self.tabview.tab("Award XP"), values=xp_vals, width=500, height=40)
+        self.label_tab_11.grid(row=1, column=0, padx=20, pady=20)
+
+        reasonlist = ["<REDACTED>"]
+
+        self.pricetab1 = customtkinter.CTkOptionMenu(self.tabview.tab("Award XP"), values=reasonlist, width=200, height=40)
+        self.pricetab1.grid(row=1, column=1, padx=20, pady=20)
+
+
+        self.reason_xp1 = customtkinter.CTkEntry(self.tabview.tab("Award XP"), placeholder_text="Amount of Points", width=500, height=40)
+        self.reason_xp1.grid(row=2, column=0, padx=20, pady=20)
+
+        self.xp_label1 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="", width=500, height=40, font=customtkinter.CTkFont(size=20))
+        self.xp_label1.grid(row=3, column=0, padx=20, pady=20)
+
+        self.xp_tran1 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Awards:", width=150, height=40, font=customtkinter.CTkFont(size=23))
+        self.xp_tran1.grid(row=2, column=1, padx=20, pady=20)
+        
+        self.xp_transaction1 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="", width=150, height=40, font=customtkinter.CTkFont(size=16))
+        self.xp_transaction1.grid(row=3, column=1, padx=20, pady=20)     
+
+        self.issuedby_xp1 = customtkinter.CTkButton(self.tabview.tab("Award XP"), text="Check Points", command=check_points_award, width=500, height=40)
+        self.issuedby_xp1.grid(row=4, column=0, padx=10, pady=10)
+
+        self.submit1 = customtkinter.CTkButton(self.tabview.tab("Award XP"), text="Award Points", command=submit_points_award, width=500, height=40)
+        self.submit1.grid(row=5, column=0, padx=10, pady=10)
+
+    def year11sidebutton(self):
+        self.sidebutton(11)
+
+    def year10sidebutton(self):
+        self.sidebutton(10)
+
+    def year9sidebutton(self):
+        self.sidebutton(9)
+
+    def year8sidebutton(self):
+        self.sidebutton(8)
+
+    def year7sidebutton(self):
+        self.sidebutton(7)
+
+    def getparentemailsilent(self):
+        global inputname
+        global behav_sheet
+        global findname
+        global djsaf89h3
+        global ase2sdfasdf
+        scopes = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
+
 
                 
