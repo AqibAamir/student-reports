@@ -496,6 +496,83 @@ class App(customtkinter.CTk):
         self.successnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
 
 
+    def xp_success(self):
+        for widget in self.tabview.tab("Spend XP").winfo_children():
+            widget.destroy()
+        self.successnote = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="Success!", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.successnote.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.successnote2 = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="The XP Points have been credited.", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.successnote2.grid(row=1, column=0, padx=20, pady=(20, 10))
+        self.successnote3 = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="Choose another year group on the sidebar", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.successnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
+
+    def xp_success1(self):
+        for widget in self.tabview.tab("Award XP").winfo_children():
+            widget.destroy()
+        self.successnote = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Success!", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.successnote.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.successnote2 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="The XP Points have been credited.", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.successnote2.grid(row=1, column=0, padx=20, pady=(20, 10))
+        self.successnote3 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Choose another year group on the sidebar", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.successnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
+
+
+    def xp_failure(self):
+        for widget in self.tabview.tab("Spend XP").winfo_children():
+            widget.destroy()
+        self.failnote = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="Failure!", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.failnote.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.failnote2 = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="The student is in debt!", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.failnote2.grid(row=1, column=0, padx=20, pady=(20, 10))
+        self.failnote3 = customtkinter.CTkLabel(self.tabview.tab("Spend XP"), text="Please choose another year group on the sidebar", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.failnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
+
+    def xp_failure(self):
+        for widget in self.tabview.tab("Award XP").winfo_children():
+            widget.destroy()
+        self.failnote = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Failure!", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.failnote.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.failnote2 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="An error has occurred!", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.failnote2.grid(row=1, column=0, padx=20, pady=(20, 10))
+        self.failnote3 = customtkinter.CTkLabel(self.tabview.tab("Award XP"), text="Please choose another year group on the sidebar", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.failnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
+
+    def failure(self):
+        for widget in self.tabview.tab("Behaviour Report").winfo_children():
+            widget.destroy()
+        self.failnote = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="Failure!", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.failnote.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.failnote2 = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="The emails have NOT been submitted.", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.failnote2.grid(row=1, column=0, padx=20, pady=(20, 10))
+        self.failnote3 = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="Please try again by choosing a year group on the side panel", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.failnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
+        
+        
+
+    def submit_behaviour(self):
+        parentemail = self.getparentemailsilent()
+        # Do stuff
+        indexnumber = beaviour_vals.index(self.label_tab_1_behav.get())
+        inputnames = behaviour_realname[indexnumber]
+        findname = behav_sheet.find(inputname)
+        issuedby = self.issuedby.get()
+        reason = self.reason.get()
+        current_time = time.strftime("%a, %d %b %Y", time.localtime())
+        faosehfosne = "gram"
+        # If the day today is a thursday or friday then timeytim would say monday and any other day would say thursdayfor timeytim
+        if time.strftime("%a", time.localtime()) == "Thu" or time.strftime("%a", time.localtime()) == "Fri":
+            timeytim = "following Tuesday."
+        elif time.strftime("%a", time.localtime()) == "Mon":
+            timeytim = "this Tuesday"
+        else:
+            timeytim = "this Thursday."
+        message = f'''<REDACTED>'''
+        sender = "<REDACTED>"
+        password = "<REDACTED>"
+        receivers = parentemail
+        foasfesofelsp = "tele"
+
+
 
 
 
