@@ -245,3 +245,58 @@ class App(customtkinter.CTk):
                     self.xp_failure()
             except Exception as e:
                 print(e)
+
+    def submit_points_award():
+            try:
+                scopes = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
+                credentials = ServiceAccountCredentials.from_json_keyfile_name("auth_key.json", scopes)
+                file = gspread.authorize(credentials)
+                xp_sheet = file.open("House Points Tracker Yearly")
+                xp_sheet = xp_sheet.worksheet("XP")
+                indexnumber = xp_vals.index(self.label_tab_11.get())
+                inputname = xp_realname[indexnumber]
+                findname = xp_sheet.find(inputname)
+                print(inputname)
+                print(findname)
+                row = findname.row
+                col = findname.col
+                pointscol = col + 2
+                currentpoints = xp_sheet.cell(row, pointscol).value
+                print(currentpoints)
+                if int(currentpoints) < 0:
+                    debt = True
+                else:
+                    debt = False
+            except Exception as e:
+                print(e)
+            try:
+                if debt == False:
+                    points = self.reason_xp1.get()
+                    newpoints = int(currentpoints) + int(points)
+                    xp_sheet.update_cell(row, pointscol, newpoints)
+                    oldreason = self.pricetab1.get()
+                    today = datetime.now().date()
+                    monday = today - timedelta(days=today.weekday())
+                    print("here")
+                    mondaydate = monday.strftime("%d/%m/%Y").replace('/20', '/')
+                    oldreason = self.pricetab1.get()
+                    dayyyte = xp_sheet.find(mondaydate)
+                    cole = dayyyte.col
+                    xp_sheet.update_cell(row, cole, newpoints)
+                    reasonappend = xp_sheet.cell(row, pointscol+4).value
+                    print("here again")
+                    timenow = datetime.strftime(datetime.now(), '%d/%m/%Y')
+                    print("nothere")
+                    if reasonappend == None:
+                        newreason = f"{timenow} {oldreason}"
+                    else:
+                        newreason = f"{timenow} {oldreason}\n{reasonappend}"
+                    xp_sheet.update_cell(row, pointscol+4, newreason)
+                    self.xp_success1()
+                elif debt == True:
+                    print("Failed")
+                    self.xp_failure
+            except Exception as e:
+                print(e)
+
+                
