@@ -450,5 +450,54 @@ class App(customtkinter.CTk):
             parentemail = [studentcell1.value, studentcell2.value, studentcell3.value, sahil, farhana]
             return parentemail
 
+            def detention_number(self):
+            scopes = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
+
+        credentials = ServiceAccountCredentials.from_json_keyfile_name("auth_key.json", scopes)
+        file = gspread.authorize(credentials)
+        behav_sheet = file.open("Parents Email addresses")
+        behav_sheet = behav_sheet.worksheet("Script")
+
+        indexnumber = beaviour_vals.index(self.label_tab_1_behav.get())
+        print(self.label_tab_1_behav.get())
+        print(indexnumber)
+        inputname = behaviour_realname[indexnumber]
+        findname = behav_sheet.find(inputname)
+        print(inputname)
+        print(findname)
+        row = findname.row
+        col = findname.col
+        col = col + 6
+        studentcell1 = behav_sheet.cell(row, col)
+        self.detentionlabel.configure(text=f"{self.label_tab_1_behav.get()} has {studentcell1.value} detentions")
+
+    def open_input_dialog_event(self):
+        dialog = customtkinter.CTkInputDialog(text="Type in a number:", title="CTkInputDialog")
+        print("CTkInputDialog:", dialog.get_input())
+
+    def change_appearance_mode_event(self, new_appearance_mode: str):
+        customtkinter.set_appearance_mode(new_appearance_mode)
+
+    def change_scaling_event(self, new_scaling: str):
+        new_scaling_float = int(new_scaling.replace("%", "")) / 100
+        customtkinter.set_widget_scaling(new_scaling_float)
+
+    def sidebar_button_event(self):
+        print("sidebar_button click")
+
+    def success(self):
+        for widget in self.tabview.tab("Behaviour Report").winfo_children():
+            widget.destroy()
+        self.successnote = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="Success!", width=500, height=40, font=customtkinter.CTkFont(size=40, weight="bold"))
+        self.successnote.grid(row=0, column=0, padx=20, pady=(20, 10))
+        self.successnote2 = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="The behaviour report has been submitted.", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.successnote2.grid(row=1, column=0, padx=20, pady=(20, 10))
+        self.successnote3 = customtkinter.CTkLabel(self.tabview.tab("Behaviour Report"), text="Choose another year group on the sidebar", width=500, height=40, font=customtkinter.CTkFont(size=20, weight="bold"))
+        self.successnote3.grid(row=2, column=0, padx=20, pady=(20, 10))
+
+
+
+
+
 
                 
