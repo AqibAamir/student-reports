@@ -412,5 +412,43 @@ class App(customtkinter.CTk):
         global ase2sdfasdf
         scopes = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
 
+        credentials = ServiceAccountCredentials.from_json_keyfile_name("auth_key.json", scopes)
+        file = gspread.authorize(credentials)
+        behav_sheet = file.open("Parents Email addresses")
+        behav_sheet = behav_sheet.worksheet("Script")
+
+        djsaf89h3 = '<REDACTED>'
+        ase2sdfasdf = '<REDACTED>'
+        
+        indexnumber = beaviour_vals.index(self.label_tab_1_behav.get())
+        print(self.label_tab_1_behav.get())
+        print(indexnumber)
+        inputname = behaviour_realname[indexnumber]
+        findname = behav_sheet.find(inputname)
+        print(inputname)
+        print(findname)
+        row = findname.row
+        col = findname.col
+        col = col + 2
+        studentcell1 = behav_sheet.cell(row, col)
+        studentcell2 = behav_sheet.cell(row, col + 1)
+        studentcell3 = behav_sheet.cell(row, col + 2)
+        print(f'Studentcell1 = {studentcell1.value}')
+        print(f'Studentcell2 = {studentcell2.value}')
+        print(studentcell3)
+        print(f'Studentcell3 = {studentcell3.value}')
+        if studentcell2.value == None and studentcell3.value == None:
+            print("Number1")
+            parentemail = [studentcell1.value, sahil, farhana]
+            return parentemail
+        elif studentcell2.value != None and studentcell3.value == None:
+            print("Number3")
+            parentemail = [studentcell1.value, studentcell2.value, sahil, farhana]
+            return parentemail
+        elif studentcell2.value != None and studentcell3.value != None:
+            print("Number4")
+            parentemail = [studentcell1.value, studentcell2.value, studentcell3.value, sahil, farhana]
+            return parentemail
+
 
                 
